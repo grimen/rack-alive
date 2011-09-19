@@ -2,7 +2,6 @@ require "rack/alive/version"
 
 module Rack
   class Alive
-    # Your code goes here...
 
     def initialize(app, conditional_block = nil)
       @app, @path, @conditional_block = app, "/alive", conditional_block
