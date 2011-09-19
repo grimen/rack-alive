@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Merchii", "Jonas Grimfelt"]
   s.email       = ["jonas@merchii.com", "grimen@gmail.com"]
   s.homepage    = "http://github.com/merchii/rack-alive"
-  s.summary     = %q{TODO: Write a gem summary}
+  s.summary     = %q{Rack middleware for checking if app is alive or not - optionally via custom condition(s).}
   s.description = s.summary
 
   s.rubyforge_project = s.name
