@@ -1,0 +1,12 @@
+== TODO
+
+-- MAYBE ...
+
+- [feature]: Support different response-formats (with more detailed status data):
+
+  Example: JSON
+
+    {
+      status: 500,
+      message: "This is so FAIL..."
+    }

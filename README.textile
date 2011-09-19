@@ -1,0 +1,60 @@
+h1. RACK-ALIVE "!https://secure.travis-ci.org/merchii/rack-alive.png!":http://travis-ci.org/merchii/rack-alive
+
+_Rack middleware for checking if app is alive or not - optionally via custom condition(s)._
+
+h2. Installation
+
+Add to your @Gemfile@:
+
+<pre>
+  gem 'rack-alive'
+</pre>
+
+...and @bundle install@.
+
+h2. Usage
+
+*Minimal:*
+
+<pre>
+  require 'rack/alive'
+
+  use Rack::Alive
+</pre>
+
+*Advanced:*
+
+<pre>
+  require 'rack/alive'
+
+  use Rack::Alive, proc {
+    # Test DB-connection.
+    db_alive =
+      begin
+        ActiveRecord::Base.connection.select_all('select 1')
+        true
+      rescue
+        false
+      end
+
+    # Check that you got all horses/unicorns in the stable...or something.
+    got_all_horses = ENV['HORSES_IN_THE_STABLE'].to_i == 5
+
+    db_alive && got_all_horses
+  }
+</pre>
+
+h2. Test
+
+<pre>
+  GET /alive?
+</pre>
+
+h2. Notes
+
+This gem was developed for our own requirements at *"Merchii":http://github.com/merchii*, so feel free to send pull-requests with enhancements of any kind (features, bug-fixes, documentation, tests, etc.) to make it better or useful for you as well.
+
+h2. License
+
+Released under the MIT license.
+Copyright (c) "Jonas Grimfelt":http://github.com/grimen, "Merchii":http://github.com/merchii
