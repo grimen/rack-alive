@@ -15,7 +15,7 @@ describe Rack::Alive do
 
   describe "Middleware" do
     before do
-      @app = lambda { |env| [200, {'Content-Type' => 'text/plain'}, ""] }
+      @app = lambda { |env| [200, {'Content-Type' => 'text/plain'}, [""]] }
     end
 
     describe "Minimal setup: No custom conditions" do
@@ -23,7 +23,7 @@ describe Rack::Alive do
         request = Rack::MockRequest.env_for("/alive?")
         response = Rack::Alive.new(@app).call(request)
         status(response).must_equal 200
-        body(response).must_equal "true"
+        body(response).must_equal ["true"]
       end
     end
 
@@ -34,7 +34,7 @@ describe Rack::Alive do
           false
         }).call(request)
         status(response).must_equal 500
-        body(response).must_equal "false"
+        body(response).must_equal ["false"]
       end
 
       it 'should not be alive if block conditions raise error' do
@@ -43,7 +43,7 @@ describe Rack::Alive do
           raise "SHIT - WHERE ARE ALL THE HORSES???!!! *drama-queen scream*"
         }).call(request)
         status(response).must_equal 500
-        body(response).must_equal "false"
+        body(response).must_equal ["false"]
       end
 
       it 'should be alive if block conditions are true' do
@@ -52,7 +52,7 @@ describe Rack::Alive do
           true
         }).call(request)
         status(response).must_equal 200
-        body(response).must_equal "true"
+        body(response).must_equal ["true"]
       end
     end
   end

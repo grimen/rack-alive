@@ -19,9 +19,9 @@ module Rack
 
       def alive_response(sucess)
         if sucess
-          [200, {'Content-Type' => 'text/plain'}, "true"]
+          [200, {'Content-Type' => 'text/plain'}, ["true"]]
         else
-          [500, {'Content-Type' => 'text/plain'}, "false"]
+          [500, {'Content-Type' => 'text/plain'}, ["false"]]
         end
       end
 
